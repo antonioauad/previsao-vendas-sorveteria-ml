@@ -1,6 +1,6 @@
 # previsao-vendas-sorveteria-ml
 
-# 🍦 Previsão de Vendas de Sorvete Rrlacionando com Temperatura - Projeto com Machine Learning
+# 🍦 Previsão de Vendas de Sorvete com relacão a temperatura do dia - Projeto com Machine Learning
 
 ## 📖 Entendendo o Desafio
 Este projeto foi desenvolvido como parte de um desafio prático da plataforma DIO. O objetivo é ajudar a sorveteria fictícia **Gelato Mágico** a otimizar sua produção diária. 

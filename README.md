@@ -1,9 +1,10 @@
 # previsao-vendas-sorveteria-ml
-Modelo de previsão de vendas de sorvetes conforme a temperatura para evitar perdas
-# 🍦 Previsão de Vendas de Sorvete com Machine Learning
+
+# 🍦 Previsão de Vendas de Sorvete Rrlacionando com Temperatura - Projeto com Machine Learning
 
 ## 📖 Entendendo o Desafio
-Este projeto foi desenvolvido como parte de um desafio prático da plataforma DIO. O objetivo é ajudar a sorveteria fictícia **Gelato Mágico** a otimizar sua produção diária. Como as vendas de sorvete em uma cidade litorânea possuem forte correlação com a temperatura, o uso de Machine Learning permite antecipar a demanda, evitando prejuízos com desperdícios (produção excessiva) ou perda de vendas (falta de produto).
+Este projeto foi desenvolvido como parte de um desafio prático da plataforma DIO. O objetivo é ajudar a sorveteria fictícia **Gelato Mágico** a otimizar sua produção diária. 
+Como as vendas de sorvete em uma cidade litorânea possuem forte correlação com a temperatura, o uso de Machine Learning permite antecipar a demanda, evitando prejuízos com desperdícios (produção excessiva) ou perda de vendas (falta de produto).
 
 ## 🚀 Tecnologias Utilizadas
 * **Python:** Linguagem principal para análise e modelagem de dados.

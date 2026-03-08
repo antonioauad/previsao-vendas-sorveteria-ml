@@ -25,6 +25,10 @@ O próximo passo lógico para este projeto é a sua produtização. A implementa
 * O acionamento de alertas automáticos para o estoque e produção com base na previsão meteorológica da semana.
 * Um dashboard interativo (Power BI) para acompanhamento gerencial.
 
+* ## 🚀 Resultado do Trabalho no Azure
+* 
+* <img width="1474" height="704" alt="image" src="https://github.com/user-attachments/assets/313c6af7-8470-4ecb-9d2d-daf02c2bef4b" />
+
 ## 📁 Estrutura do Repositório
 * `/inputs`: Contém o dataset utilizado no projeto (`dataset_vendas.csv`).
 * `/src`: Scripts de treinamento e gerenciamento do MLflow.

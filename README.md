@@ -33,4 +33,3 @@ O próximo passo lógico para este projeto é a sua produtização. A implementa
 * `/inputs`: Contém o dataset utilizado no projeto (`dataset_vendas.csv`).
 * `/src`: Scripts de treinamento e gerenciamento do MLflow.
 * `README.md`: Documentação e racional do projeto.
-<img width="1474" height="704" alt="image" src="https://github.com/user-attachments/assets/313c6af7-8470-4ecb-9d2d-daf02c2bef4b" />

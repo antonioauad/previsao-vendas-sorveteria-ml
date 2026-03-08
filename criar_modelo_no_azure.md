@@ -20,19 +20,18 @@ Passo 3: Preparar os Arquivos no Studio
 Passo 4: O Código adaptado para o Azure
 Abra o seu modelo_vendas.ipynb no Azure ML Studio. Quando rodamos o código diretamente em uma Instância de Computação do Azure, ele já entende automaticamente que o MLflow deve registrar as métricas lá dentro.
 Copie e cole este código em uma célula e execute:
-Python
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import mlflow
-import mlflow.sklearn
+import joblib # Importante: Biblioteca nativa para salvar modelos
 
 # O Azure ML já configura o tracking URI do MLflow por baixo dos panos!
 mlflow.set_experiment("Previsao_Vendas_Gelato_Magico")
 
 with mlflow.start_run() as run:
-    # 1. Carregar os dados (ajuste o caminho se necessário)
+    # 1. Carregar os dados
     df = pd.read_csv('dataset_vendas.csv')
     
     X = df[['temperatura_celsius']]
@@ -48,20 +47,23 @@ with mlflow.start_run() as run:
     # 4. Fazer previsões
     previsoes = modelo.predict(X_test)
 
-    # 5. Avaliar e registrar métricas
+    # 5. Avaliar e registrar métricas no MLflow
     mse = mean_squared_error(y_test, previsoes)
     r2 = r2_score(y_test, previsoes)
 
     print(f"MSE: {mse:.2f}")
     print(f"R2 Score: {r2:.2f}")
 
-    # Registrando no Azure ML via MLflow
     mlflow.log_metric("mse", mse)
     mlflow.log_metric("r2_score", r2)
-    mlflow.sklearn.log_model(modelo, "modelo_regressao_linear")
+    
+    # 6. A SOLUÇÃO: Salvar o modelo localmente e enviar como artefato
+    nome_arquivo = "modelo_regressao_linear.pkl"
+    joblib.dump(modelo, nome_arquivo)
+    mlflow.log_artifact(nome_arquivo)
     
     print(f"Run ID: {run.info.run_id}")
-    print("Modelo treinado e registrado com sucesso no Azure ML!")
+    print("Modelo treinado e salvo como artefato com sucesso no Azure ML! 🚀")
 
 Passo 5: Resultado 
 Depois de rodar o código, vá até o menu lateral esquerdo e clique em Jobs (Trabalhos).

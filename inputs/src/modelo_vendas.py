@@ -3,14 +3,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import mlflow
-import mlflow.sklearn
+import joblib # Importante: Biblioteca nativa para salvar modelos
 
-# Iniciar o rastreamento do MLflow
+# O Azure ML já configura o tracking URI do MLflow por baixo dos panos!
 mlflow.set_experiment("Previsao_Vendas_Gelato_Magico")
 
-with mlflow.start_run():
+with mlflow.start_run() as run:
     # 1. Carregar os dados
-    df = pd.read_csv('../inputs/dataset_vendas.csv')
+    df = pd.read_csv('dataset_vendas.csv')
     
     X = df[['temperatura_celsius']]
     y = df['sorvetes_vendidos']
@@ -25,7 +25,7 @@ with mlflow.start_run():
     # 4. Fazer previsões
     previsoes = modelo.predict(X_test)
 
-    # 5. Avaliar e registrar métricas
+    # 5. Avaliar e registrar métricas no MLflow
     mse = mean_squared_error(y_test, previsoes)
     r2 = r2_score(y_test, previsoes)
 
@@ -34,6 +34,11 @@ with mlflow.start_run():
 
     mlflow.log_metric("mse", mse)
     mlflow.log_metric("r2_score", r2)
-    mlflow.sklearn.log_model(modelo, "modelo_regressao_linear")
     
-    print("Modelo treinado e registrado com sucesso no MLflow!")
+    # 6. A SOLUÇÃO: Salvar o modelo localmente e enviar como artefato
+    nome_arquivo = "modelo_regressao_linear.pkl"
+    joblib.dump(modelo, nome_arquivo)
+    mlflow.log_artifact(nome_arquivo)
+    
+    print(f"Run ID: {run.info.run_id}")
+    print("Modelo treinado e salvo como artefato com sucesso no Azure ML! 🚀")
